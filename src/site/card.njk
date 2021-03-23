@@ -57,77 +57,27 @@ testdata:
    img: P0001.jpg
 ---
 
-<div class="grid-container">
-{% for r in testdata %}
-  {% if r.img" %}<div class="flip-card">{% else %}<div class="card">{% endif %}  
-  <div class="flip-card-inner">
-    <div class="flip-card-back">
-      <img src="{{r.img}}" alt="{{r.heading}}" style="width:300px;height:300px;">
-    </div>
-    <div class="flip-card-front">
-<p>{{r.heading}}</p>{% for n,v in r %}{% if n=="alt1" %}<p>{{v}}</p>{% endif %}{% if n=="alt2" %}<p>{{v}}</p>{% endif %}{% if n=="seealso" %}<p>SEE ALSO : {{v}}</p>{% endif %}{% if n=="note" %}<p class="notes">{{v}}</p>{% endif %}{% endfor %}
-    </div>
-  </div>
-</div>  
-{% endfor%}
-</div>
 
 
 <div class="container">
-<div class="card-wrapper flip-right">
-  <div class="card">
-    <div class="card__front">flip-right</div>
-    <div class="card__back">Back-End</div>
-  </div>
-</div>
 
-<div class="card-wrapper flip-left">
+{% for r in testdata %}
+<div class="card-wrapper {% if r.img is defined %} flip-right {% endif %}">
   <div class="card">
-    <div class="card__front">flip-left</div>
-    <div class="card__back">Back-End</div>
+    <div class="card__front"><h6>{{r.heading}}</h6>
+    
+    {% for n,v in r %}{% if n=="alt1" %}<p>&#x261D; {{v}}</p>{% endif %}
+    {% if n=="alt2" %}<p>&#x261D; {{v}}</p>{% endif %}
+    {% if n=="seealso" %}<p>&#261E; {{v}}</p>{% endif %}
+    {% if n=="note" %}<p class="notes">{{v}}</p>{% endif %}
+    {% if n=="source"%}<p class="source">{{v}}</p>{% endif %}
+    {% endfor %}
+    
+    </div>
+    {% if r.img is defined %}<div class="card__back"><img src="{{r.img}}"></div>{% endif %}
   </div>
 </div>
+{% endfor %}
 
-<div class="card-wrapper flip-up">
-  <div class="card">
-    <div class="card__front">flip-up</div>
-    <div class="card__back">Back-End</div>
-  </div>
-</div>
-
-<div class="card-wrapper flip-down">
-  <div class="card">
-    <div class="card__front">flip-down</div>
-    <div class="card__back">Back-End</div>
-  </div>
-</div>
-
-<div class="card-wrapper flip-diagonal-right">
-  <div class="card">
-    <div class="card__front">flip-diagonal-right</div>
-    <div class="card__back">Back-End</div>
-  </div>
-</div>
-
-<div class="card-wrapper flip-diagonal-left">
-  <div class="card">
-    <div class="card__front">flip-diagonal-left</div>
-    <div class="card__back">Back-End</div>
-  </div>
-</div>
-
-<div class="card-wrapper flip-inverted-diagonal-right">
-  <div class="card">
-    <div class="card__front">flip-inverted-diagonal-right</div>
-    <div class="card__back">Back-End</div>
-  </div>
-</div>
-
-<div class="card-wrapper flip-inverted-diagonal-left">
-  <div class="card">
-    <div class="card__front">flip-inverted-diagonal-left</div>
-    <div class="card__back">Back-End</div>
-  </div>
-</div>
   
 </div>
