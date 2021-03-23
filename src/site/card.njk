@@ -75,7 +75,7 @@ testdata:
     {% endfor %}
     
     </div>
-    {% if r.img is defined %}<div class="card__back"><img src="{{r.img}}"></div>{% endif %}
+    {% if r.img is defined %}<div class="card__back"><img src="{{r.img}}" alt="{{r.heading}}" class="center"></div>{% endif %}
   </div>
 </div>
 {% endfor %}
