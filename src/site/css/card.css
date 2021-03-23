@@ -1,90 +1,129 @@
-:root { --time: 0.707s; }
-
-.cards {
-  display: grid;
-}
-
-.card {
-  perspective: 40rem;
-}
-
-.card-body {
-  display: flex;
-  transform-style: preserve-3d;
-  transition: var(--time) transform;
-
-  .card:hover &, .card:focus & {
-    transform: rotateX(-180deg);
-  }
-}
-
-.card-front, .card-back {
-  backface-visibility: hidden;
-  min-width: 100%;
-}
-
-.card-back {
-  transform: rotateX(-180deg) translate(-100%, 0);
-}
-
-/* Make it Pretty */
+/* $backgroundColor: #FFCCC7;
+$accentColor: #F5222D;
+$cardFrontBackground: #FFF1F0; */
 
 body {
-  line-height: 1.3;
-  font-family: sans-serif;
+  background-color: #FFCCC7;
 }
 
-.cards {
-  grid-gap: 1.5rem;
-  grid-auto-rows: 1fr;
-  padding: 3rem;
-  background: whitesmoke;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card-wrapper {
+  display: block;
+  flex-basis: 250px;
+  flex-grow: 1;
+  max-width: 300px;
+  min-width: 25%;
+}
+/* Flip Right */
+.card-wrapper.flip-right .card__back {
+ transform: rotateY(180deg);
+}
+.card-wrapper.flip-right:hover .card {
+  transform: rotateY(180deg);
+}
+
+/* Flip Left */
+.card-wrapper.flip-left .card__back {
+ transform: rotateY(-180deg);
+}
+.card-wrapper.flip-left:hover .card {
+  transform: rotateY(-180deg);
+}
+
+/* Flip Up */
+.card-wrapper.flip-up .card__back {
+ transform: rotateX(180deg);
+}
+.card-wrapper.flip-up:hover .card {
+  transform: rotateX(180deg);
+}
+
+/* Flip Down */
+.card-wrapper.flip-down .card__back {
+ transform: rotateX(-180deg);
+}
+.card-wrapper.flip-down:hover .card {
+  transform: rotateX(-180deg);
+}
+
+/* Flip Diagonal Right */
+.card-wrapper.flip-diagonal-right .card__back {
+ transform: rotate3d(1, 1, 0, 180deg);
+}
+.card-wrapper.flip-diagonal-right:hover .card {
+  transform: rotate3d(1, 1, 0, 180deg);
+}
+
+/* Flip Diagonal Left */
+.card-wrapper.flip-diagonal-left .card__back {
+ transform: rotate3d(1, 1, 0, -180deg);
+}
+.card-wrapper.flip-diagonal-left:hover .card {
+  transform: rotate3d(1, 1, 0, -180deg);
+}
+
+/* Flip Inverted Diagonal Right */
+.card-wrapper.flip-inverted-diagonal-right .card__back {
+ transform: rotate3d(-1, 1, 0, 180deg);
+}
+.card-wrapper.flip-inverted-diagonal-right:hover .card {
+  transform: rotate3d(-1, 1, 0, 180deg);
+}
+
+/* Flip Inverted Diagonal Left */
+.card-wrapper.flip-inverted-diagonal-left .card__back {
+ transform: rotate3d(-1, 1, 0, -180deg);
+}
+.card-wrapper.flip-inverted-diagonal-left:hover .card {
+  transform: rotate3d(-1, 1, 0, -180deg);
 }
 
 .card {
-  display: flex;
-  transition: z-index, transform calc(var(--time) / 4);
-  transition-delay: var(--time), 0s;
-  text-decoration: none;
-  color: inherit;
-  z-index: 0;
-  
-  &:hover {
-    transition-delay: 0s;
-    z-index: 1;
-  }
-
-  &:active {
-    transform: scale(0.975);
-  }
+  position: relative;
+  cursor: pointer;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-in-out;
+  transform-style: preserve-3d;
+  padding-bottom: calc(100% - 20px);
+  height: 0;
+  margin: 10px;
 }
 
-.card-body {
-  border-radius: 0.25rem;
-  flex: 1;
-}
-
-.card-front, .card-back {
-  @extend .shadow;
+.card__front,
+.card__back {
   display: flex;
   align-items: center;
-  background-color: white;
-  box-sizing: border-box;
-  padding: 1.5rem;
-  border-radius: 0.25rem;
-}
+  justify-content: center;
+  border: 1px solid #F5222D;
+  border-radius: 4px;
+    
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
 
-.card-front {
+  backface-visibility: hidden;
+  transform: rotateX(0deg);
+}
+  
+.card__front {
+  color: #F5222D;
+  background: #FFF1F0;
+  font-weight: 700;
+  font-size: 1rem;
+  z-index: 2;
+}
+  
+.card__back {
   font-size: 1.5rem;
+  color: #FFF1F0;
+  background: #F5222D;
 }
-
-.shadow {
-  box-shadow: 0 -1px 1px rgba(0,0,0,0.04), 
-              0 2px 2px rgba(0,0,0,0.04), 
-              0 4px 4px rgba(0,0,0,0.04), 
-              0 8px 8px rgba(0,0,0,0.04),
-              0 16px 16px rgba(0,0,0,0.04); 
-}
-
-View Compiled
