@@ -127,3 +127,10 @@ body {
   color: #FFF1F0;
   background: #F5222D;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
