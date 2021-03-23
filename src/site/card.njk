@@ -66,7 +66,8 @@ testdata:
   <div class="card">
     <div class="card__front"><h6>{{r.heading}}</h6>
     
-    {% for n,v in r %}{% if n=="alt1" %}<p>&#x261D; {{v}}</p>{% endif %}
+    {% for n,v in r %}
+    {% if n=="alt1" %}<p>&#x261D; {{v}}</p>{% endif %}
     {% if n=="alt2" %}<p>&#x261D; {{v}}</p>{% endif %}
     {% if n=="seealso" %}<p>&#261E; {{v}}</p>{% endif %}
     {% if n=="note" %}<p class="notes">{{v}}</p>{% endif %}
