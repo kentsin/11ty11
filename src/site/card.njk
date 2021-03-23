@@ -1,0 +1,73 @@
+---
+title: cardview
+layout: card.njk
+testdata:
+-
+   type: C
+   TID: 576
+   heading: grj
+   alt1: 法律改革辦公室
+   alt2: Gabinete para a Reforma Jurídica
+   note: Juridical Reform Bureau
+   source: 
+-
+   type: P
+   TID: 746
+   heading: Thibaut, Anton Friedrich Justus
+   alt1: 安東.弗里德里希.尤斯圖斯. 蒂堡
+   source: 論制定一部德意志統一民法典之必要性
+-
+   type: P
+   TID: 745
+   heading: Afonso, Aniceto
+   alt1: 安尼瑟圖. 阿豐素
+   source: Macau Seculo XXI = 澳門的廿一世紀
+-
+   type: P
+   TID: 744
+   heading: Hildreth, W. Bartley
+   alt1: W.巴特利.希爾德雷思
+   source: 公共部門財政管理制度
+-
+   type: G
+   TID: 638
+   heading: 琉球群島
+   alt1: Ryukyu
+   alt2: Ryukyu Islands
+   source: 澳門法學 9
+-
+   type: G
+   TID: 567
+   heading: 泰國
+   alt1: Tailânia
+   source: 
+-
+   type: P
+   TID: 4
+   heading: Monteiro, Vicente
+   alt1: 韋思明
+   alt2: Monteiro, Vicente Joao
+   source: 物業登記局局長 (1998)
+-
+   type: P
+   TID: 1
+   heading: Pires, Candida da Silva Antunes
+   alt1: 李淑華
+   source: 澳門大學法學院副教授, (1995)
+   img: P0001.jpg
+---
+
+<div class="grid-container">
+{% for r in testdata %}
+  {% if r.img" %}<div class="flip-card">{% else %}<div class="card">{% endif %}  
+  <div class="flip-card-inner">
+    <div class="flip-card-back">
+      <img src="{{r.img}}" alt="{{r.heading}}" style="width:300px;height:300px;">
+    </div>
+    <div class="flip-card-front">
+<p>{{r.heading}}</p>{% for n,v in r %}{% if n=="alt1" %}<p>{{v}}</p>{% endif %}{% if n=="alt2" %}<p>{{v}}</p>{% endif %}{% if n=="seealso" %}<p>SEE ALSO : {{v}}</p>{% endif %}{% if n=="note" %}<p class="notes">{{v}}</p>{% endif %}{% endfor %}
+    </div>
+  </div>
+</div>  
+{% endfor%}
+</div>
