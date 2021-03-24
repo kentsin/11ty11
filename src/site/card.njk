@@ -57,28 +57,51 @@ testdata:
    img: P0001.jpg
 ---
 
-
+<div class="header" id="myHeader">
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> 
+</div> 
 
 <div class="container">
-
 {% for r in testdata %}
-<div class="card-wrapper {% if r.img is defined %} flip-right {% endif %}">
+<div class="card-wrapper{% if r.img is defined %} flip-right{% endif %}">
   <div class="card">
-    <div class="card__front"><h6>{{r.heading}}</h6>
-    
+    <div class="card__front">
+    <p>{{r.heading}}<br><br>
     {% for n,v in r %}
-    {% if n=="alt1" %}<p>&#x261D; {{v}}</p>{% endif %}
-    {% if n=="alt2" %}<p>&#x261D; {{v}}</p>{% endif %}
-    {% if n=="seealso" %}<p>&#261E; {{v}}</p>{% endif %}
-    {% if n=="note" %}<p class="notes">{{v}}</p>{% endif %}
-    {% if n=="source"%}<p class="source">&#1F4D6; {{v}}</p>{% endif %}
+    {% if n=="alt1" %}&#x261D; {{v}}<br>{% endif %}
+    {% if n=="alt2" %}&#x261D; {{v}}<br>{% endif %}
+    {% if n=="seealso" %}&#261E; {{v}}<br>{% endif %}
+    {% if n=="note" %}{{v}}<br>{% endif %}
+    {% if n=="source"%}📖 {{v}}<br>{% endif %}
     {% endfor %}
-    
+    </p>
     </div>
-    {% if r.img is defined %}<div class="card__back"><img src="{{r.img}}" alt="{{r.heading}}" class="center"></div>{% endif %}
+    {% if r.img is defined %}<div class="card__back"><img src="{{r.img}}" alt="{{r.heading}}" class="center">
+    </div>{% endif %}
   </div>
 </div>
 {% endfor %}
+</div>{# container #}
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
 
-  
-</div>
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
