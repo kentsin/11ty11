@@ -40,6 +40,8 @@ testdata:
    TID: 567
    heading: 泰國
    alt1: Tailânia
+   alt2: ราชอาณาจักรไทย
+   seealso: 暹羅
    source: 
 -
    type: P
@@ -57,24 +59,26 @@ testdata:
    img: P0001.jpg
 ---
 
-<div class="header" id="myHeader">
+<div class="sticky" id="myHeader">
   <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> 
 </div> 
 
-<div class="container">
-{% for r in testdata %}
-<div class="card-wrapper{% if r.img is defined %} flip-right{% endif %}">
+<div class="container" id="allcards">
+{% for r in na %}
+<div class="card-wrapper{% if r.img is defined %} flip-right{% endif %}" txt="{{r.heading}} {{r.alt1}} {{r.alt2}} {{r.seaalso}}">
   <div class="card">
+    
     <div class="card__front">
-    <p>{{r.heading}}<br><br>
+    <p>{{r.heading}}</p>
+    <ul>
     {% for n,v in r %}
-    {% if n=="alt1" %}&#x261D; {{v}}<br>{% endif %}
-    {% if n=="alt2" %}&#x261D; {{v}}<br>{% endif %}
-    {% if n=="seealso" %}&#261E; {{v}}<br>{% endif %}
-    {% if n=="note" %}{{v}}<br>{% endif %}
-    {% if n=="source"%}📖 {{v}}<br>{% endif %}
+    {% if n=="alt1" %}<li class="index_up">{{v}}</li>{% endif %}
+    {% if n=="alt2" %}<li class="index_up">{{v}}</li>{% endif %}
+    {% if n=="seealso" %}<li class="index_right">{{v}}</li>{% endif %}
+    {% if n=="note" %}<li class="no_bullet">{{v}}</li>{% endif %}
+    {% if n=="source"%}<li class="book">{{v}}</li>{% endif %}
     {% endfor %}
-    </p>
+    </ul>
     </div>
     {% if r.img is defined %}<div class="card__back"><img src="{{r.img}}" alt="{{r.heading}}" class="center">
     </div>{% endif %}
@@ -85,21 +89,21 @@ testdata:
 <script>
 function myFunction() {
   // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
+  var input, filter, table, cr, txt, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
+  table = document.getElementById("allcards");
+  cr = table.getElementsByClassName("card-wrapper");
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
+    txt = cr[i].txt;
+    if (txt) {
+      
+      if (txt.toUpperCase().indexOf(filter) > -1) {
+        cr[i].style.display = "";
       } else {
-        tr[i].style.display = "none";
+        cr[i].style.display = "none";
       }
     }
   }
