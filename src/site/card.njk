@@ -8,8 +8,9 @@ testdata:
    heading: grj
    alt1: 法律改革辦公室
    alt2: Gabinete para a Reforma Jurídica
-   note: Juridical Reform Bureau
-   source: 
+   alt3: Juridical Reform Bureau
+   note: 澳門特別行政區一個已撤銷的政府部門，負責在檢討重大法典、主要法律制度及其他重要法規的範圍內，行使法規草擬中央機制的職能。法律改革辦公室於2005年3月14日成立，由行政法務司監督，由一名主任領導及由兩名副主任輔助。2011年1月1日，透過澳門特別行政區第22/2010號行政法規，法律改革辦公室與國際法事務辦公室合併成為法律改革及國際法事務局，負責協助澳門特區政府統籌立法計劃的制定並監督其執行，檢討並草擬重大法典及主要法律制度，以及進行國際法事務方面的工作。 
+   source: 修訂《道路法典》諮詢文件 / 法律改革辦公室及法律改革諮詢委員會
 -
    type: P
    TID: 746
@@ -59,17 +60,19 @@ testdata:
    img: P0001.jpg
 ---
 
-<div class="sticky" id="myHeader">
+<h1>Names</h1>
+<div class="sticky" id="myHeader" style="height: 30;">
   <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> 
 </div> 
 
+
 <div class="container" id="allcards">
-{% for r in na %}
+{% for r in testdata %}
 <div class="card-wrapper{% if r.img is defined %} flip-right{% endif %}" txt="{{r.heading}} {{r.alt1}} {{r.alt2}} {{r.seaalso}}">
   <div class="card">
     
     <div class="card__front">
-    <p>{{r.heading}}</p>
+    <p style="font: 20px; text-align: center;">{{r.heading}}</p>
     <ul>
     {% for n,v in r %}
     {% if n=="alt1" %}<li class="index_up">{{v}}</li>{% endif %}
@@ -86,6 +89,8 @@ testdata:
 </div>
 {% endfor %}
 </div>{# container #}
+
+<p>All emojis designed by OpenMoji – the open-source emoji and icon project. License: CC BY-SA 4.0</p>
 <script>
 function myFunction() {
   // Declare variables
