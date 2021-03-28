@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="SIN Hang Kin">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="card.css">
+  <link rel="stylesheet" href="typeandstyle.css">
+  <title>{{title}}</title>
+  <script>
+  {% include "filtercards.js" %}
+  </script>
+</head><body>
+{{ layoutContent | safe }}
+{% include "components/footer.njk" %}
+</body>
+</html>
