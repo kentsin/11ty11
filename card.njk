@@ -1,0 +1,100 @@
+---
+title: cardview
+layout: cardlayout.njk
+permalink: /card.html
+testdata:
+-
+   type: C
+   TID: 576
+   heading: grj
+   alt1: 法律改革辦公室
+   alt2: Gabinete para a Reforma Jurídica
+   alt3: Juridical Reform Bureau
+   seealso: DSAJ
+   note: 澳門特別行政區一個已撤銷的政府部門，負責在檢討重大法典、主要法律制度及其他重要法規的範圍內，行使法規草擬中央機制的職能。法律改革辦公室於2005年3月14日成立，由行政法務司監督，由一名主任領導及由兩名副主任輔助。2011年1月1日，透過澳門特別行政區第22/2010號行政法規，法律改革辦公室與國際法事務辦公室合併成為法律改革及國際法事務局，負責協助澳門特區政府統籌立法計劃的制定並監督其執行，檢討並草擬重大法典及主要法律制度，以及進行國際法事務方面的工作。 
+   source: 修訂《道路法典》諮詢文件 / 法律改革辦公室及法律改革諮詢委員會
+-
+   type: P
+   TID: 746
+   heading: Thibaut, Anton Friedrich Justus
+   alt1: 安東.弗里德里希.尤斯圖斯. 蒂堡
+   source: 論制定一部德意志統一民法典之必要性
+-
+   type: P
+   TID: 745
+   heading: Afonso, Aniceto
+   alt1: 安尼瑟圖. 阿豐素
+   source: Macau Seculo XXI = 澳門的廿一世紀
+-
+   type: P
+   TID: 744
+   heading: Hildreth, W. Bartley
+   alt1: W.巴特利.希爾德雷思
+   source: 公共部門財政管理制度
+-
+   type: G
+   TID: 638
+   heading: 琉球群島
+   alt1: Ryukyu
+   alt2: Ryukyu Islands
+   source: 澳門法學 9
+-
+   type: G
+   TID: 567
+   heading: 泰國
+   alt1: Tailânia
+   alt2: ราชอาณาจักรไทย
+   alt3: Thailand
+   seealso: 暹羅
+   source: 
+-
+   type: P
+   TID: 4
+   heading: Monteiro, Vicente
+   alt1: 韋思明
+   alt2: Monteiro, Vicente Joao
+   source: 物業登記局局長 (1998)
+-
+   type: P
+   TID: 1
+   heading: Pires, Candida da Silva Antunes
+   alt1: 李淑華
+   source: 澳門大學法學院副教授, (1995)
+   img: candida-pires.jpg
+-
+   type: C
+   TID: 99
+   heading: DSAJ
+   alt1: 法務局
+   alt2: Direcção dos Serviços de Assuntos de Justiça
+   alt3: Macao SAR Legal Affairs Bureau
+   note: 法務局為澳門特別行政區的公共部門，負責總體法務政策與集中統籌立法方面的研究及技術輔助工作，執行法律草擬、法律翻譯、國際及區際法律事務、法律推廣等方面的政策， 並負責登記及公證機關、私人公證員的統籌及輔助工作，以及支援司法援助的一般制度的運作。
+   img: p21cibzjch.jpeg
+---
+
+<div class="stickytop">
+ <p>  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."></p>
+</div>
+
+<div class="container" id="allcards">
+{% for r in testdata %}
+<div class="card" filtertext="{%for n,v in r%}{%if n.substr(0,3)=="alt"%}{{v| safe}}{%endif%}{%if n.substr(0,3)=="see"%}{{v| safe}}{% endif%}{%if n=="heading"%}{{v| safe}}{% endif %} {%endfor%}">
+      <div class="heading">{{r.heading| safe}}</div>
+      <div{%if r.img is defined %} class="flipper"{%endif%}>
+         <div class="front"><ul>
+      {% for n, v in r %}
+        {% if n.substr(0,3)=="alt" %}<li class="index_up">{{v| safe}}</li>{% endif %}
+        {% if n.substr(0,3)=="see" %}<li class="index_right">{{v| safe}}</li>{% endif %}
+        {% if n=="note" %}<li class="no_bullet">{{v| safe}}</li>{% endif %}
+        {% if n=="source"%}<li class="book">{{v| safe}}</li>{% endif %}
+      {% endfor %}
+      </ul>
+         </div>
+      {% if r.img is defined %}<div class="back"><img src="img/{{r.img| safe}}" width="80%" alt="{{r.heading| safe}}"></div>{% endif %}
+      </div>
+   <div class="footer">
+      <a href="mailto:library@al.gov.mo?&subject=Name%20Authority%20{{r.heading| urlencode}}&body=TID%20{{r.TID}}:{{r.heading| urlencode}}">Email Us</a>
+   </div>
+</div>
+{% endfor %}
+</div>
